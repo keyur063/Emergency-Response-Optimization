@@ -1,0 +1,38 @@
+# =========================
+# BACKEND (Python / ML)
+# =========================
+
+# Virtual Environments
+venv/
+env/
+.env
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Machine Learning Artifacts
+# (Do not commit large model weights to GitHub)
+*.pkl
+backend/model_weights/
+
+# Logs & Generated Data 
+# (You usually want to keep the folders but ignore their contents)
+backend/logs/*.csv
+backend/data/synthetic_data.csv
+
+# =========================
+# FRONTEND (Future Node.js / React / Vue)
+# =========================
+node_modules/
+dist/
+build/
+.npm/
+
+# =========================
+# OS & IDE FILES
+# =========================
+.DS_Store
+.vscode/
+.idea/
