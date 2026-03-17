@@ -7,7 +7,7 @@ from core.ga_dispatch import GeneticAlgorithm, DispatchEnvironment
 app = FastAPI(
     title="Intelligent Dispatch API",
     description="API for optimizing emergency ambulance routing using ML and Genetic Algorithms.",
-    version="1.0.0"
+    version="1.1.0"
 )
 
 allowed_origins = [
@@ -27,7 +27,8 @@ app.add_middleware(
 
 # SCHEMAS
 class DispatchRequest(BaseModel):
-    case_severity: int  # 0 for minor, 1 for critical
+    # Upgraded to 3-Tier Protocol: 0 (Minor), 1 (Moderate), 2 (Critical)
+    case_severity: int 
 
 # API ROUTES
 @app.post("/optimize")

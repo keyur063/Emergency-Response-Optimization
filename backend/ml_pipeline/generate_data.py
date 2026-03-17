@@ -14,7 +14,7 @@ for _ in range(NUM_SAMPLES):
     weather_severity = random.uniform(0, 1)
     distance_km = random.uniform(1, 25)
     hospital_load = random.uniform(0, 1)
-    case_severity = random.choice([0, 1])
+    case_severity = random.choice([0, 1, 2])
 
     # Increased baseline weight for time and distance
     time_penalty = (eta * 2.5) * (1 + traffic_level) 
