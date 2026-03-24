@@ -121,10 +121,6 @@ select {
   transition: all 0.3s ease;
 }
 
-select.severity-level-2 { border-left: 4px solid #ef4444; } /* Red for Critical */
-select.severity-level-1 { border-left: 4px solid #f59e0b; } /* Orange for Moderate */
-select.severity-level-0 { border-left: 4px solid #10b981; } /* Green for Minor */
-
 .run-btn {
   flex: 1;
   padding: 1rem 2rem;
@@ -263,3 +259,18 @@ select.severity-level-0 { border-left: 4px solid #10b981; } /* Green for Minor *
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 .error-state { background: rgba(239, 68, 68, 0.1); color: #fca5a5; padding: 1rem; border-radius: 8px; text-align: center; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+/* --- 3-Tier Severity Dynamic Borders --- */
+select.severity-level-2 { border-left: 4px solid #ef4444; } 
+select.severity-level-1 { border-left: 4px solid #f59e0b; } 
+select.severity-level-0 { border-left: 4px solid #10b981; } 
+
+/* --- Vision AI Upload UI --- */
+.divider { text-align: center; color: rgba(255,255,255,0.3); margin: -10px 0; font-weight: bold; font-size: 0.8rem; letter-spacing: 2px;}
+.file-upload-zone { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.3); border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 0.8rem; position: relative;}
+.file-upload-zone.active { border-color: #a855f7; background: rgba(168, 85, 247, 0.1); }
+.file-upload-zone input[type="file"] { display: none; }
+.file-label { cursor: pointer; color: var(--text-main); font-weight: 500; flex-grow: 1; text-align: center;}
+.clear-img-btn { background: rgba(255,0,0,0.2); border: none; color: white; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center;}
+.vision-badge { background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); padding: 0.5rem 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: center; font-size: 0.9rem;}
+.vision-badge .conf { color: rgba(255,255,255,0.6); margin-left: 8px; font-size: 0.8rem;}

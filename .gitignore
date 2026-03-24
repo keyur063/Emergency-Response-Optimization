@@ -21,6 +21,7 @@ backend/model_weights/
 # (You usually want to keep the folders but ignore their contents)
 backend/logs/*.csv
 backend/data/synthetic_data.csv
+backend/test.py
 
 # =========================
 # FRONTEND (Future Node.js / React / Vue)
