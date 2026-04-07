@@ -1,0 +1,367 @@
+/* Base Styles & Variables */
+:root {
+    --primary: #f43f5e;
+    --primary-hover: #e11d48;
+    --secondary: #10b981;
+    --bg-dark: #0f172a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --glass-bg: rgba(15, 23, 42, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+}
+
+#app-container {
+    position: relative;
+    width: 100%;
+    height: 600px; 
+    border-radius: 12px; 
+    overflow: hidden;
+}
+
+/* Map Styling */
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Below the UI panel */
+}
+
+/* Make Leaflet popups and controls fit the dark theme slightly better */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: var(--bg-dark);
+    color: var(--text-main);
+    box-shadow: var(--glass-shadow);
+}
+.leaflet-container a {
+    color: var(--primary);
+}
+.leaflet-routing-container {
+    background-color: var(--glass-bg) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--text-main) !important;
+    border: 1px solid var(--glass-border) !important;
+    max-height: 40vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    margin-right: 20px !important;
+    margin-top: 20px !important;
+}
+
+.leaflet-routing-alt h2, .leaflet-routing-alt h3 {
+    color: var(--text-main);
+}
+
+table.leaflet-routing-alt tr:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+
+/* Glassmorphism Sidebar Panel */
+.glass-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 380px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: all 0.3s ease;
+}
+
+/* Header */
+.panel-header {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 16px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #fff, #cbd5e1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.pulse-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7);
+    animation: pulse 2s infinite;
+}
+
+.pulse-dot.active {
+    background-color: var(--secondary);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: activePulse 2s infinite;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(244, 63, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+
+@keyframes activePulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Forms & Inputs */
+.routing-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper .icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 14px 14px 44px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15);
+}
+
+.input-group input::placeholder {
+    color: #64748b;
+}
+
+/* Button */
+.primary-btn {
+    margin-top: 8px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+}
+
+.primary-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(244, 63, 94, 0.4);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+/* Loader */
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Route Info Card */
+.route-info {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid var(--glass-border);
+    animation: slideUp 0.4s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.route-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #e2e8f0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 14px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-grid .info-card:nth-child(3) {
+    grid-column: span 2;
+}
+
+.info-card.highlight {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.info-card.highlight .info-value {
+    color: var(--secondary);
+}
+
+.info-label {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.info-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+}
+
+.tracking-status {
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.status-indicator p {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.error-message {
+    margin-top: 10px;
+    padding: 12px;
+    background: rgba(244, 63, 94, 0.1);
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    color: #fca5a5;
+    font-size: 13px;
+}
+
+/* Animations for Ambulance Icon */
+.ambulance-marker {
+    transition: all 0.5s linear; /* Smooth movement when position updates */
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .glass-panel {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        max-height: 50vh;
+        border-radius: 24px 24px 0 0;
+        padding: 24px;
+    }
+    .leaflet-routing-container {
+        display: none !important; /* Hide native instructions on mobile to save space */
+    }
+}

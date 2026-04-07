@@ -1,276 +1,281 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap');
-
-:root {
-  --primary: #4f46e5;
-  --secondary: #ec4899;
-  --glass-bg: rgba(17, 25, 40, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.125);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-}
-
-body, html {
+/* =========================================
+   1. THE NUCLEAR RESET & LAYOUT
+   ========================================= */
+html, body, #root {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  font-family: 'Outfit', sans-serif;
-  color: var(--text-main);
-  overflow: hidden; /* Fits perfectly on one screen */
-  background-color: #0f172a;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #0f172a; /* Dark sleek background */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #f8fafc;
+  
+  /* This forces the root div itself to act as the centering flexbox */
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
 }
 
-/* Beautiful Slow Animated Background */
 .animated-bg {
-  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem;
-  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  padding: 20px;
+  background: radial-gradient(circle at top left, #1e293b, #0f172a);
 }
 
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* The Premium Frosted Glass Panel */
-.glass-panel {
+/* =========================================
+   2. DASHBOARD PANEL CONTAINER
+   ========================================= */
+.dashboard-panel {
   width: 100%;
-  max-width: 1200px;
-  background: var(--glass-bg);
+  min-width: 650px; /* Forces it to be wide enough */
+  max-width: 750px;
+  background: rgba(30, 41, 59, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-radius: 24px;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  /* Removed margin: 0 auto; to let flexbox do 100% of the work */
 }
 
-/* --- Branding Header --- */
+/* =========================================
+   3. HEADER STYLES
+   ========================================= */
 .brand-header {
   text-align: center;
-  position: relative;
+  margin-bottom: 30px;
 }
 
 .brand-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
-  font-weight: 900;
-  letter-spacing: 2px;
+  font-size: 32px;
+  margin: 0 0 5px 0;
+  letter-spacing: 1px;
 }
 
 .brand-header h1 span {
-  color: transparent;
-  background: linear-gradient(to right, #60a5fa, #c084fc);
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: #3b82f6; /* Blue highlight */
 }
 
 .brand-header p {
-  margin: 0.5rem 0 0 0;
-  color: var(--text-muted);
-  font-weight: 300;
-  letter-spacing: 1px;
+  color: #94a3b8;
+  margin: 0;
+  font-size: 14px;
   text-transform: uppercase;
-  font-size: 0.9rem;
+  letter-spacing: 2px;
 }
 
-/* --- Controls & Inputs --- */
+/* =========================================
+   4. FORM CONTROLS & INPUTS
+   ========================================= */
 .controls-container {
   display: flex;
-  gap: 1.5rem;
-  align-items: flex-end;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.05);
+  flex-direction: column;
+  gap: 20px;
 }
 
 .input-group {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 8px;
+  transition: opacity 0.3s ease;
 }
 
 .input-group label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 13px;
+  color: #cbd5e1;
+  font-weight: 600;
 }
 
+/* Style the Select Dropdown */
 select {
-  padding: 1rem;
-  background: rgba(15, 23, 42, 0.6);
-  color: white;
-  border-radius: 12px;
-  font-family: inherit;
-  font-size: 1.1rem;
-  font-weight: 500;
-  border: 1px solid rgba(255,255,255,0.1);
-  outline: none;
+  width: 100%;
+  padding: 14px;
+  background-color: rgba(15, 23, 42, 0.6);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 15px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  outline: none;
+  appearance: none; /* Hides default arrow on some browsers */
 }
 
-.run-btn {
+select:focus {
+  border-color: #3b82f6;
+}
+
+/* Divider ("OR") */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.divider::before, .divider::after {
+  content: '';
   flex: 1;
-  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.divider::before { margin-right: 15px; }
+.divider::after { margin-left: 15px; }
+
+/* =========================================
+   5. FILE UPLOAD STYLING
+   ========================================= */
+.file-upload-zone {
+  position: relative;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.4);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.file-upload-zone:hover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.file-upload-zone.active {
+  border-color: #10b981; /* Green when file is selected */
+  border-style: solid;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+/* Hide the ugly default HTML file input completely */
+.file-upload-zone input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Style the label to look like a button */
+.file-label {
+  display: block;
+  padding: 20px;
+  font-size: 15px;
+  color: #cbd5e1;
+  pointer-events: none; /* Lets clicks pass through to the hidden input */
+}
+
+.clear-img-btn {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  background: rgba(244, 63, 94, 0.2);
+  color: #f43f5e;
   border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* =========================================
+   6. BUTTONS
+   ========================================= */
+.run-btn {
+  width: 100%;
+  padding: 16px;
+  background: #3b82f6;
   color: white;
-  font-family: inherit;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
   font-weight: 700;
-  font-size: 1rem;
   letter-spacing: 1px;
   cursor: pointer;
-  box-shadow: 0 10px 20px -10px var(--secondary);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .run-btn:hover:not(:disabled) {
+  background: #2563eb;
   transform: translateY(-2px);
-  box-shadow: 0 15px 25px -10px var(--secondary);
 }
 
 .run-btn:disabled {
-  background: #334155;
-  color: #94a3b8;
-  box-shadow: none;
+  background: #475569;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-/* --- Loading Animation --- */
-.loading-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 0;
-  gap: 1rem;
-  color: #c084fc;
+/* =========================================
+   7. RESULTS & LOADING STATES
+   ========================================= */
+.loading-state, .error-state {
+  text-align: center;
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.error-state {
+  background: rgba(244, 63, 94, 0.1);
+  color: #fca5a5;
+  border: 1px solid rgba(244, 63, 94, 0.3);
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(192, 132, 252, 0.2);
-  border-top-color: #c084fc;
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: #3b82f6;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+  margin: 0 auto 15px auto;
 }
 
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* --- Results Area --- */
+/* Results Grid */
 .results-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.results-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding-bottom: 1rem;
-}
-
-.results-header h2 { margin: 0; font-weight: 500; font-size: 1.3rem; }
-
-.fitness-score {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-.fitness-score span { font-size: 0.8rem; color: #10b981; text-transform: uppercase; }
-.fitness-score strong { color: white; }
-
-/* Grid Cards */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 15px;
+  margin: 20px 0;
 }
 
 .metric-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 1.5rem;
+  background: rgba(15, 23, 42, 0.5);
+  padding: 15px;
+  border-radius: 12px;
   text-align: center;
-  transition: transform 0.3s ease, background 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.metric-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.06);
+.metric-card .label {
+  font-size: 11px;
+  color: #94a3b8;
+  margin: 5px 0;
+  text-transform: uppercase;
 }
 
-.icon-wrapper {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 1rem auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  border-radius: 50%;
+.metric-card .value {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #fff;
 }
-.icon-wrapper.blue { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); }
-.icon-wrapper.red { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); }
-.icon-wrapper.purple { background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); }
-
-.metric-card .label { margin: 0; color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
-.metric-card .value { margin: 0.5rem 0 0 0; font-size: 2rem; font-weight: 700; }
-
-/* Context Bars */
-.context-bars {
-  display: flex;
-  gap: 2rem;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
-  border-radius: 16px;
-}
-
-.bar-group { flex: 1; }
-.bar-labels { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;}
-.progress-track { height: 8px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; overflow: hidden; }
-.progress-fill { height: 100%; border-radius: 4px; transition: width 1s ease-out; }
-.progress-fill.yellow { background: linear-gradient(90deg, #f59e0b, #fbbf24); box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
-.progress-fill.blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
-
-/* Utility */
-.fade-in { animation: fadeIn 0.5s ease-out forwards; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-.error-state { background: rgba(239, 68, 68, 0.1); color: #fca5a5; padding: 1rem; border-radius: 8px; text-align: center; border: 1px solid rgba(239, 68, 68, 0.3); }
-
-/* --- 3-Tier Severity Dynamic Borders --- */
-select.severity-level-2 { border-left: 4px solid #ef4444; } 
-select.severity-level-1 { border-left: 4px solid #f59e0b; } 
-select.severity-level-0 { border-left: 4px solid #10b981; } 
-
-/* --- Vision AI Upload UI --- */
-.divider { text-align: center; color: rgba(255,255,255,0.3); margin: -10px 0; font-weight: bold; font-size: 0.8rem; letter-spacing: 2px;}
-.file-upload-zone { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.3); border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 0.8rem; position: relative;}
-.file-upload-zone.active { border-color: #a855f7; background: rgba(168, 85, 247, 0.1); }
-.file-upload-zone input[type="file"] { display: none; }
-.file-label { cursor: pointer; color: var(--text-main); font-weight: 500; flex-grow: 1; text-align: center;}
-.clear-img-btn { background: rgba(255,0,0,0.2); border: none; color: white; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center;}
-.vision-badge { background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); padding: 0.5rem 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: center; font-size: 0.9rem;}
-.vision-badge .conf { color: rgba(255,255,255,0.6); margin-left: 8px; font-size: 0.8rem;}

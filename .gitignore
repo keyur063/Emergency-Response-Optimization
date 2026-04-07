@@ -43,6 +43,4 @@ build/
 *.pt
 *.h5
 
-# Ignore user-uploaded accident images but keep the folder
-backend/uploads/*
-!backend/uploads/.gitkeep
+backend/uploads
