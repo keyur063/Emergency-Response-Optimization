@@ -1,4 +1,3 @@
-```markdown
 # 🚑 SmartDispatch: Multi-Modal AI Emergency Routing System
 
 ![Project Status](https://img.shields.io/badge/Status-Active-success)
@@ -48,7 +47,7 @@ During critical emergencies, dispatchers rely on subjective, panicked descriptio
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/yourusername/SmartDispatch.git](https://github.com/yourusername/SmartDispatch.git)
+git clone https://github.com/keyur063/SmartDispatch.git
 cd SmartDispatch
 ```
 
